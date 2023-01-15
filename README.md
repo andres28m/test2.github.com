@@ -1,1 +1,1 @@
-# test2.github.com/game.html
+# test2.github.com
