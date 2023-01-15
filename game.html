@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CVP</title>
+  
+  <style>
+  	
+     body {
+background-color: #000000;
+text-align: center;
+}
+       p {
+color: white;
+text-align: center;
+}
+       .center-title {
+color: white;
+text-align: center;
+}
+  	.stack-btn {
+width: 65px;
+height: 25px;
+border: "25";
+background-color: #4CAF50;
+color: white;
+font-size: 16px;
+cursor: pointer;
+margin: 10px;
+border-radius: 25px;
+}
+
+      .twist-btn {
+width: 65px;
+height: 25px;
+border: "25";
+background-color: #4CAF50;
+color: white;
+font-size: 16px;
+cursor: pointer;
+margin: 10px;
+border-radius: 25px;
+}
+
+</style>
+
+</head>
+<body onload="load()">
+  <h1 class="center-title">Crypto ViT Pro</h1>
+  <p>Espacio de juegos.</p>
+  <script>
+    function load() {
+        // Crear el botón de recargar vida
+        var reloadBtn = document.createElement("BUTTON");
+        reloadBtn.innerHTML = "Stack";
+        reloadBtn.classList.add("stack-btn");
+        document.body.appendChild(reloadBtn);
+        
+        var reloadBtn1 = document.createElement("BUTTON");
+        reloadBtn1.innerHTML = "Twist";
+        reloadBtn1.classList.add("twist-btn");
+        document.body.appendChild(reloadBtn1);
+
+        // Crear el widget para mostrar el WebView
+        var widget = document.createElement("DIV");
+        widget.setAttribute("id", "widget");
+        widget.style.display = "none";
+        document.body.appendChild(widget);
+
+        var webView = document.createElement("IFRAME");
+        webView.setAttribute("id", "webView");
+        webView.style.height = "540px";
+        webView.style.width = "340px";
+        webView.style.borderRadius = "25px";
+        widget.appendChild(webView);
+
+        // Asignar función al botón de recargar vida
+        reloadBtn.onclick = function(){
+          widget.style.display = "block";
+          webView.src = "https://www.minijuegos.com/juego/stack/jugar" ;
+        }
+        reloadBtn1.onclick = function(){
+          widget.style.display = "block";
+          webView.src = "https://www.minijuegos.com/juego/tower-twist/jugar" ;
+        }
+    }
+    // Lista de servidores de anuncios a bloquear
+var blockList = ["adserver1.com", "adserver2.net", "adserver3.org"];
+
+// Sobreescribir la función fetch para interceptar las peticiones
+var originalFetch = window.fetch;
+window.fetch = function(input, init) {
+    var url = new URL(input);
+    if (blockList.indexOf(url.hostname) !== -1) {
+        // Si la petición está dirigida a un servidor de anuncios, rechazarla
+        return Promise.reject("Petición bloqueada a " + url.hostname);
+    }
+    // Si no es un servidor de anuncios, ejecutar la petición original
+    return originalFetch(input, init);
+}
+
+    
+  </script>
+</body>
+</html>
