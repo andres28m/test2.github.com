@@ -157,15 +157,6 @@ document.getElementById("deviceType").innerHTML = deviceType;
   <script>
   	setTimeout(generateID, 300);
   
-  	var userAgent = navigator.userAgent;
-    var deviceType = "";
-    if (userAgent.match(/iPhone|iPad|iPod/)) {
-      deviceType = "iPhone";
-    } else if (userAgent.match(/Android/)) {
-      deviceType = "Android";
-    }
-    document.getElementById("deviceType").innerHTML = deviceType;
-  
     function load() {
         // Crear el botón de recargar vida
         var reloadBtn = document.createElement("BUTTON");
