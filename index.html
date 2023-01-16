@@ -1,14 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>CVP</title>
   
   <style>
-    
+  	
      body {
-background-color: #000000;
-text-align: center;
+          background-color: #000000;
+          text-align: center;
+          align-items: center;
+} 
+  	
+     .container {
+         display: flex;
+         align-items: center; 
+         justify-content: center;
 }
+
+     .botong {
+     	text-align: center;
+         margin-right: 10px; 
+}
+
+     .id-text {
+         text-align: center;
+}
+
        p {
 color: white;
 text-align: center;
@@ -21,7 +38,16 @@ text-align: center;
 color: white;
 text-align: center;
 }
-    .stack-btn {
+
+     .botong {
+     	width: 125px;
+         height: 25px;
+         border: "25";
+         background-color: #D8E069;
+         border-radius: 25px;
+        } 
+        
+  	.stack-btn {
 width: 65px;
 height: 25px;
 border: "25";
@@ -33,7 +59,7 @@ margin: 10px;
 border-radius: 25px;
 }
 
-      .twist-btn {
+      .knife-btn {
 width: 65px;
 height: 25px;
 border: "25";
@@ -57,7 +83,7 @@ margin: 10px;
 border-radius: 25px;
 }
 
-   .cols-btn {
+   .suchi-btn {
 width: 65px;
 height: 25px;
 border: "25";
@@ -103,19 +129,41 @@ function generateID() {
 
   // Display the ID and IP in a text view
   var textView = document.getElementById("textView");
-  textView.innerHTML = "ID: " + id + "<br>IP: " + ip;
+  textView.innerHTML = "ID: " + id;
 }
+
+var userAgent = navigator.userAgent;
+var deviceType = "";
+if (userAgent.match(/iPhone|iPad|iPod/)) {
+  deviceType = "iPhone";
+} else if (userAgent.match(/Android/)) {
+  deviceType = "Android";
+}
+document.getElementById("deviceType").innerHTML = deviceType;
 
 
 </script>
 </head>
 <body onload="load()">
   <h1 class="center-title">Crypto ViT Pro</h1>
-  <button onclick="generateID()">Generate ID</button>
-  <div id="textView">ID</div>
+  <div class="container">
+        <button class="botong" onclick="generateID()">Generate ID</button>
+           <div class="id-text" id="textView">ID</div>
+  </div>
 
-  <p>Espacio de juegos.</p>
+  <p>Type of device: <span id="deviceType"></span></p>
+
+   
   <script>
+  	var userAgent = navigator.userAgent;
+    var deviceType = "";
+    if (userAgent.match(/iPhone|iPad|iPod/)) {
+      deviceType = "iPhone";
+    } else if (userAgent.match(/Android/)) {
+      deviceType = "Android";
+    }
+    document.getElementById("deviceType").innerHTML = deviceType;
+  
     function load() {
         // Crear el botón de recargar vida
         var reloadBtn = document.createElement("BUTTON");
@@ -124,8 +172,8 @@ function generateID() {
         document.body.appendChild(reloadBtn);
         
         var reloadBtn1 = document.createElement("BUTTON");
-        reloadBtn1.innerHTML = "Twist";
-        reloadBtn1.classList.add("twist-btn");
+        reloadBtn1.innerHTML = "knife";
+        reloadBtn1.classList.add("knife-btn");
         document.body.appendChild(reloadBtn1);
         
         var reloadBtn2 = document.createElement("BUTTON");
@@ -134,8 +182,8 @@ function generateID() {
         document.body.appendChild(reloadBtn2);
         
         var reloadBtn3 = document.createElement("BUTTON");
-        reloadBtn3.innerHTML = "Cols";
-        reloadBtn3.classList.add("cols-btn");
+        reloadBtn3.innerHTML = "Suchi";
+        reloadBtn3.classList.add("suchi-btn");
         document.body.appendChild(reloadBtn3);
 
         // Crear el widget para mostrar el WebView
@@ -148,12 +196,12 @@ function generateID() {
         webView.setAttribute("id", "webView");
         webView.style.borderRadius = "25px";
         
-        if (Window.innerwidth < 1080) {
-            webView.style.height = "70%";
-            webView.style.width = "100%";
+        if (Window.innerheight < 1600) {
+            webView.style.height = "550px";
+            webView.style.width = "340px";
         } else {
-          webView.style.height = "840px";
-            webView.style.width = "100%";
+        	webView.style.height = "550px";
+            webView.style.width = "340px";
            } 
            
         widget.appendChild(webView);
@@ -165,7 +213,7 @@ function generateID() {
         }
         reloadBtn1.onclick = function(){
           widget.style.display = "block";
-          webView.src = "https://www.minijuegos.com/juego/tower-twist/jugar" ;
+          webView.src = "https://www.minijuegos.com/juego/knife-hit/jugar" ;
         }
         reloadBtn2.onclick = function(){
           widget.style.display = "block";
@@ -173,7 +221,7 @@ function generateID() {
         }
         reloadBtn3.onclick = function(){
           widget.style.display = "block";
-          webView.src = "https://www.minijuegos.com/juego/crazy-switch-color/jugar" ;
+          webView.src = "https://www.sushiparty.io/" ;
         }
     }
     
@@ -195,5 +243,5 @@ window.fetch = function(input, init) {
 
     
   </script>
-
-</body></html>
+</body>
+</html>
