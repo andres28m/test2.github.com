@@ -11,6 +11,11 @@
           align-items: center;
           justify-content: center;
 } 
+
+     .centered {
+          margin: -5px;
+}
+
   	
      .container {
          display: flex;
@@ -18,11 +23,7 @@
          justify-content: center;
 }
 
-     .botong {
-     	text-align: center;
-         margin-right: 10px; 
-}
-
+     
      .id-text {
          text-align: center;
 }
@@ -38,6 +39,7 @@ text-align: center;
        .center-title {
 color: white;
 text-align: center;
+margin-top: 15px;
 }
 
      .botong {
@@ -145,8 +147,8 @@ document.getElementById("deviceType").innerHTML = deviceType;
 
 </script>
 </head>
-<body onload="load()">
-  <h1 class="center-title">Crypto ViT Pro</h1>
+<body class="centered" onload="load()">
+  <h2 class="center-title">Crypto ViT Pro</h2>
   <div class="container">
            <div class="id-text" id="textView">ID</div>
   </div>
@@ -156,6 +158,15 @@ document.getElementById("deviceType").innerHTML = deviceType;
    
   <script>
   	setTimeout(generateID, 300);
+  
+      var userAgent = navigator.userAgent;
+      var deviceType = "";
+         if (userAgent.match(/iPhone|iPad|iPod/)) {
+      deviceType = "iPhone";
+    } else if (userAgent.match(/Android/)) {
+      deviceType = "Android";
+    }
+    document.getElementById("deviceType").innerHTML = deviceType;
   
     function load() {
         // Crear el botón de recargar vida
@@ -183,20 +194,17 @@ document.getElementById("deviceType").innerHTML = deviceType;
         var widget = document.createElement("DIV");
         widget.setAttribute("id", "widget");
         widget.style.display = "none";
+        widget.style.width = window.innerWidth + "px";
+        widget.style.height = window.innerHeight + "px";
+
         document.body.appendChild(widget);
 
         var webView = document.createElement("IFRAME");
         webView.setAttribute("id", "webView");
-        webView.style.borderRadius = "25px";
-        
-        if (Window.innerheight < 1600) {
-            webView.style.height = "530px";
-            webView.style.width = "100%";
-        } else {
-        	webView.style.height = "530px";
-            webView.style.width = "100%";
-           } 
-           
+        webView.style.borderRadius = "20px";
+        webView.style.width = window.innerWidth + "px";
+        webView.style.height = window.innerHeight + "px";
+   
         widget.appendChild(webView);
 
         // Asignar función al botón de recargar vida
