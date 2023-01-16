@@ -9,6 +9,7 @@
           background-color: #000000;
           text-align: center;
           align-items: center;
+          justify-content: center;
 } 
   	
      .container {
@@ -154,7 +155,7 @@ document.getElementById("deviceType").innerHTML = deviceType;
 
    
   <script>
-  	setTimeout(generateID, 3000);
+  	setTimeout(generateID, 300);
   
   	var userAgent = navigator.userAgent;
     var deviceType = "";
@@ -199,10 +200,10 @@ document.getElementById("deviceType").innerHTML = deviceType;
         
         if (Window.innerheight < 1600) {
             webView.style.height = "500px";
-            webView.style.width = "340px";
+            webView.style.width = "360px";
         } else {
         	webView.style.height = "500px";
-            webView.style.width = "340px";
+            webView.style.width = "360px";
            } 
            
         widget.appendChild(webView);
