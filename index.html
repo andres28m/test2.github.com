@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
   <title>CVP</title>
   
   <style>
-  	
+    
      body {
 background-color: #000000;
 text-align: center;
@@ -13,11 +13,15 @@ text-align: center;
 color: white;
 text-align: center;
 }
+      div {
+color: white;
+text-align: center;
+}
        .center-title {
 color: white;
 text-align: center;
 }
-  	.stack-btn {
+    .stack-btn {
 width: 65px;
 height: 25px;
 border: "25";
@@ -41,11 +45,75 @@ margin: 10px;
 border-radius: 25px;
 }
 
-</style>
+    .subway-btn {
+width: 65px;
+height: 25px;
+border: "25";
+background-color: #4CAF50;
+color: white;
+font-size: 16px;
+cursor: pointer;
+margin: 10px;
+border-radius: 25px;
+}
 
+   .cols-btn {
+width: 65px;
+height: 25px;
+border: "25";
+background-color: #4CAF50;
+color: white;
+font-size: 16px;
+cursor: pointer;
+margin: 10px;
+border-radius: 25px;
+} 
+
+</style>
+<script>
+function generateID() {
+  // Get the user's IP address
+  var ip = null;
+  var req = new XMLHttpRequest();
+  req.open('GET', 'https://api.ipify.org', false);
+  req.send();
+  if (req.status == 200) {
+    ip = req.responseText;
+  }
+
+  // Check if the IP has an associated ID in the local storage
+  var id = localStorage.getItem(ip);
+  if (id === null) {
+    // Generate a new ID if the IP doesn't have an associated ID
+    id = Math.floor(100000 + Math.random() * 900000);
+    localStorage.setItem(ip, id);
+    // send the new id and ip to the server
+    var data = {
+      id: id,
+      ip: ip
+    };
+    fetch('/save-id-ip', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
+  // Display the ID and IP in a text view
+  var textView = document.getElementById("textView");
+  textView.innerHTML = "ID: " + id + "<br>IP: " + ip;
+}
+
+
+</script>
 </head>
 <body onload="load()">
   <h1 class="center-title">Crypto ViT Pro</h1>
+  <button onclick="generateID()">Generate ID</button>
+  <div id="textView">ID</div>
+
   <p>Espacio de juegos.</p>
   <script>
     function load() {
@@ -59,6 +127,16 @@ border-radius: 25px;
         reloadBtn1.innerHTML = "Twist";
         reloadBtn1.classList.add("twist-btn");
         document.body.appendChild(reloadBtn1);
+        
+        var reloadBtn2 = document.createElement("BUTTON");
+        reloadBtn2.innerHTML = "Subway";
+        reloadBtn2.classList.add("subway-btn");
+        document.body.appendChild(reloadBtn2);
+        
+        var reloadBtn3 = document.createElement("BUTTON");
+        reloadBtn3.innerHTML = "Cols";
+        reloadBtn3.classList.add("cols-btn");
+        document.body.appendChild(reloadBtn3);
 
         // Crear el widget para mostrar el WebView
         var widget = document.createElement("DIV");
@@ -68,9 +146,16 @@ border-radius: 25px;
 
         var webView = document.createElement("IFRAME");
         webView.setAttribute("id", "webView");
-        webView.style.height = "540px";
-        webView.style.width = "340px";
         webView.style.borderRadius = "25px";
+        
+        if (Window.innerwidth < 1080) {
+            webView.style.height = "70%";
+            webView.style.width = "100%";
+        } else {
+          webView.style.height = "840px";
+            webView.style.width = "100%";
+           } 
+           
         widget.appendChild(webView);
 
         // Asignar función al botón de recargar vida
@@ -82,7 +167,17 @@ border-radius: 25px;
           widget.style.display = "block";
           webView.src = "https://www.minijuegos.com/juego/tower-twist/jugar" ;
         }
+        reloadBtn2.onclick = function(){
+          widget.style.display = "block";
+          webView.src = "https://www.minijuegos.com/juego/subway-surfers-winter-holiday/jugar" ;
+        }
+        reloadBtn3.onclick = function(){
+          widget.style.display = "block";
+          webView.src = "https://www.minijuegos.com/juego/crazy-switch-color/jugar" ;
+        }
     }
+    
+    
     // Lista de servidores de anuncios a bloquear
 var blockList = ["adserver1.com", "adserver2.net", "adserver3.org"];
 
@@ -100,5 +195,5 @@ window.fetch = function(input, init) {
 
     
   </script>
-</body>
-</html>
+
+</body></html>
