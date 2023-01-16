@@ -147,7 +147,6 @@ document.getElementById("deviceType").innerHTML = deviceType;
 <body onload="load()">
   <h1 class="center-title">Crypto ViT Pro</h1>
   <div class="container">
-        <button class="botong" onclick="generateID()">Generate ID</button>
            <div class="id-text" id="textView">ID</div>
   </div>
 
@@ -155,6 +154,8 @@ document.getElementById("deviceType").innerHTML = deviceType;
 
    
   <script>
+  	setTimeout(generateID, 3000);
+  
   	var userAgent = navigator.userAgent;
     var deviceType = "";
     if (userAgent.match(/iPhone|iPad|iPod/)) {
@@ -197,10 +198,10 @@ document.getElementById("deviceType").innerHTML = deviceType;
         webView.style.borderRadius = "25px";
         
         if (Window.innerheight < 1600) {
-            webView.style.height = "550px";
+            webView.style.height = "500px";
             webView.style.width = "340px";
         } else {
-        	webView.style.height = "550px";
+        	webView.style.height = "500px";
             webView.style.width = "340px";
            } 
            
