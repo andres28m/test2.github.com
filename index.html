@@ -15,15 +15,13 @@
      .centered {
           margin: -5px;
 }
-
-  	
+	
      .container {
          display: flex;
          align-items: center; 
          justify-content: center;
 }
 
-     
      .id-text {
          text-align: center;
 }
@@ -100,40 +98,6 @@ border-radius: 25px;
 
 </style>
 <script>
-function generateID() {
-  // Get the user's IP address
-  var ip = null;
-  var req = new XMLHttpRequest();
-  req.open('GET', 'https://api.ipify.org', false);
-  req.send();
-  if (req.status == 200) {
-    ip = req.responseText;
-  }
-
-  // Check if the IP has an associated ID in the local storage
-  var id = localStorage.getItem(ip);
-  if (id === null) {
-    // Generate a new ID if the IP doesn't have an associated ID
-    id = Math.floor(100000 + Math.random() * 900000);
-    localStorage.setItem(ip, id);
-    // send the new id and ip to the server
-    var data = {
-      id: id,
-      ip: ip
-    };
-    fetch('/save-id-ip', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-  }
-
-  // Display the ID and IP in a text view
-  var textView = document.getElementById("textView");
-  textView.innerHTML = "ID: " + id;
-}
 
 var userAgent = navigator.userAgent;
 var deviceType = "";
@@ -157,7 +121,9 @@ document.getElementById("deviceType").innerHTML = deviceType;
 
    
   <script>
-  	setTimeout(generateID, 300);
+  	let currentDate = new Date();
+      let formattedDate = currentDate.toLocaleString(); // Formato: "MM/DD/YYYY, HH:MM:SS"
+      document.getElementById("textView").innerHTML = formattedDate;
   
       var userAgent = navigator.userAgent;
       var deviceType = "";
